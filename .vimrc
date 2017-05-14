@@ -9,7 +9,7 @@ set shiftwidth=4
 set tabstop=4
 set t_Co=256
 
-set tags=/work/achroimx_kernel/tags
+set tags=/tags
 
 "Vundle Settings
 set nocompatible
@@ -37,13 +37,13 @@ let Tlist_Use_Right_Window=1
 
 set laststatus=2
 
-"set statusline+=%#warningmsg#
-"set statusline+=${SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_always_populate_loc_list=1
-"let g:syntastic_auto_loc_list=1
-"let g:syntastic_check_on_open=1
-"let g:syntastic_check_on_wq=0
+set statusline+=%#warningmsg#
+set statusline+=${SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
 
 
 
