@@ -12,16 +12,13 @@ set shiftwidth=4
 set tabstop=4
 set t_Co=256
 
-<<<<<<< HEAD
-
 
 "ctags
 set tags=/usr/src/linux-source-4.10.0/tags
 
 
-=======
 set tags=/tags
->>>>>>> origin/master
+
 
 "Vundle Settings
 set nocompatible
@@ -51,14 +48,12 @@ nmap <F10> : TlistToggle<CR>
 let Tlist_Use_Right_Window=1
 
 set laststatus=2
-<<<<<<< HEAD
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-=======
 
 set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%#warningmsg#
 set statusline+=${SyntasticStatuslineFlag()}
->>>>>>> origin/master
+
 set statusline+=%*
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
