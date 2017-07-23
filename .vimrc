@@ -23,7 +23,6 @@ set tags=/tags
 "Vundle Settings
 set nocompatible
 set rtp+=~/.vim/bundle/vundle/
-execute pathogen#infect() 
 filetype off
 call vundle#begin()
 Bundle 'gmarik/vundle'
