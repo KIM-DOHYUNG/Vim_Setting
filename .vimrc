@@ -1,4 +1,4 @@
-"Basic Settings
+"========== Basic Settings ==========
 syntax on
 set number
 set ruler
@@ -7,79 +7,107 @@ set smartcase
 set smartindent
 set autoindent
 set cindent
+set cursorline
+set cursorcolumn
+set hidden
 set mouse=a
 set shiftwidth=4
 set tabstop=4
 set t_Co=256
+set encoding=utf-8 nobomb
+set fileencodings=utf-8 nobomb
+set backspace=indent,eol,start
 
 
-"ctags
-set tags=/usr/src/linux-source-4.10.0/tags
+
+"========== Color Settings ==========
+"colorscheme molokai
+colorscheme codedark
 
 
-set tags=/tags
-
-
-"Vundle Settings
+"========== Vundle Settings ==========
 set nocompatible
-set rtp+=~/.vim/bundle/vundle/
 filetype off
+set rtp+=~/.vim/Vundle.vim
 call vundle#begin()
-Bundle 'gmarik/vundle'
-Bundle 'git://git.wincent.com/command-t.git'
-Plugin 'The-NERD-tree'
 Plugin 'AutoComplPop'
+Plugin 'The-NERD-tree'
 Plugin 'taglist.vim'
 Plugin 'vim-airline/vim-airline'
-Plugin 'scrooloose/syntastic'
+Plugin 'inkarkat/vim-ingo-library'
+Plugin 'inkarkat/vim-mark'
+Plugin 'kien/ctrlp.vim'
+Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'tomasiser/vim-code-dark'
 call vundle#end()
 filetype plugin indent on
 
 
 
-"Plugin Settings
+"========== Plugin Settings ==========
+"[NERDTree]
 nmap <F9>  : NERDTreeToggle<CR>
-nmap <C-f> : NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeShowHidden=1
-
+"[taglist]
 nmap <F10> : TlistToggle<CR>
+let Tlist_WinWidth=60
 let Tlist_Use_Right_Window=1
-
-set laststatus=2
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%#warningmsg#
-set statusline+=${SyntasticStatuslineFlag()}
-
-set statusline+=%*
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-
-
-
-"Shortcut Settings
-vmap      <Tab>          :><CR>
-vmap      <Backspace>    :<<CR>
-vmap      <C-c>          y<CR>
-nmap      <C-v>          p<CR>
-imap      <C-v>          <ESC>p<insert>
-imap      <RightMouse>   <ESC>
-nmap      <RightMouse>   <insert>
-
-map       <F2>           :w!<CR>
-map       <F3>           :wq!<CR>
-map       <F4>           :q!<CR>
-map       <C-F5>         :!./%<<CR>
-map       <C-F7>         :!gcc % -o %<<CR>
-
-nnoremap   &             :nohl<CR>
-nnoremap   <             :tp<CR>
-nnoremap   >             :tn<CR>
+"[vim-airline]
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme = 'codedark'
+"[vim-mark]
+nmap		n			<Plug>MarkSearchCurrentNext
+nmap		N			<Plug>MarkSearchCurrentPrev
+nmap 		<leader>1	<Plug>MarkSearchGroup1Next
+nmap 		<leader>2	<Plug>MarkSearchGroup2Next
+nmap 		<leader>3	<Plug>MarkSearchGroup3Next
+nmap 		<leader>4	<Plug>MarkSearchGroup4Next
+nmap 		<leader>5	<Plug>MarkSearchGroup5Next
+nmap 		<leader>6	<Plug>MarkSearchGroup6Next
+nmap 		<leader>!	<Plug>MarkSearchGroup1Prev
+nmap 		<leader>@	<Plug>MarkSearchGroup2Prev
+nmap 		<leader>#	<Plug>MarkSearchGroup3Prev
+nmap 		<leader>$	<Plug>MarkSearchGroup4Prev
+nmap 		<leader>%	<Plug>MarkSearchGroup5Prev
+nmap 		<leader>^	<Plug>MarkSearchGroup6Prev
 
 
-"Color Settings
-colorscheme molokai
+"========== Basic Shortcut Settings ==========
+vmap		<tab>		:><CR>
+vmap		<backspace>	:<<CR>
+map			<F2>		:w!<CR>
+map			<F3>		:wq!<CR>
+map			<F4>		:q!<CR>
+nmap 		<leader>w 	:enew<CR>
+nmap 		<leader>] 	:bnext<CR>
+nmap 		<leader>[ 	:bprevious<CR>
+nmap 		<leader>q 	:bp <BAR> bd #<CR>
+nmap 		gw			:tabnew<CR>
+nmap 		g] 			:tabnext<CR>
+nmap 		g[ 			:tabprevious<CR>
+nmap 		gq 			:tabclose<CR>
+
+
+"========== ctags ==========
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR>
+nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR>
+
+if filereadable("cscope.out")
+	cs add $PWD/cscope.out
+else
+	cs add $CSCOPE_DB
+endif
+
+"========== ctags ==========
+set tags+=$HOME/Public/MyOS/tags,$HOME/Work/linux-4.9.47/tags
+
+
+
