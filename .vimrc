@@ -1,3 +1,9 @@
+"========== Color Settings ==========
+"colorscheme molokai
+colorscheme codedark
+
+
+
 "========== Basic Settings ==========
 syntax on
 set number
@@ -17,12 +23,8 @@ set t_Co=256
 set encoding=utf-8 nobomb
 set fileencodings=utf-8 nobomb
 set backspace=indent,eol,start
+hi CursorLine cterm=underline
 
-
-
-"========== Color Settings ==========
-"colorscheme molokai
-colorscheme codedark
 
 
 "========== Vundle Settings ==========
@@ -74,6 +76,7 @@ nmap 		<leader>%	<Plug>MarkSearchGroup5Prev
 nmap 		<leader>^	<Plug>MarkSearchGroup6Prev
 
 
+
 "========== Basic Shortcut Settings ==========
 vmap		<tab>		:><CR>
 vmap		<backspace>	:<<CR>
@@ -90,7 +93,8 @@ nmap 		g[ 			:tabprevious<CR>
 nmap 		gq 			:tabclose<CR>
 
 
-"========== ctags ==========
+
+"========== cscope ==========
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR>
@@ -100,11 +104,18 @@ nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR>
 nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR>
 nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR>
 
-if filereadable("cscope.out")
-	cs add $PWD/cscope.out
-else
-	cs add $CSCOPE_DB
-endif
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose
+	exe "cs add ".db." ".path
+	set cscopeverbose
+  endif
+endfunction
+au BufEnter /* call LoadCscope()
+
+
 
 "========== ctags ==========
 set tags+=$HOME/Public/MyOS/tags,$HOME/Work/linux-4.9.47/tags
